@@ -1,30 +1,46 @@
-package aula2;
+package banco;
 
 public class Conta {
-	int numero;
-	String titular;
-	double saldo;
+	private int numero;
+	private Cliente titular;
+	private double saldo;
+	private static int totalDeContas;
 	
-	boolean saca( double quantidade ) {
-		if( this.saldo > quantidade ) {
-			this.saldo -= quantidade;
-			return true;
-		} else {
+	public Conta(int n, Cliente c) {
+		this.numero = n;
+		this.titular = c;
+		Conta.totalDeContas = Conta.totalDeContas + 1;
+	}
+	
+	boolean saca( double qtd ) {
+		if( this.saldo < qtd ) {
 			return false;
+		} else {
+			this.saldo -= qtd;
+			return true;
 		}
 	}
 	
-	void deposita( double quantidade ) {
-		this.saldo += quantidade;
+	boolean deposita( double qtd ) {
+		if( qtd < 0 ) {
+			return false;
+		} else {
+			this.saldo += qtd;
+			return true;
+		}
 	}
 	
-	String imprimeTitular() {
-		return "Titular da conta: " + this.titular;
+	Cliente imprimeTitular() {
+		return this.titular;
 	}
 	
-	boolean transferir( Conta outraConta, double quantidade ) {
-		if( this.saca(quantidade) ) {
-			outraConta.deposita(quantidade);
+	double devolveSaldo() {
+		return this.saldo;
+	}
+	
+	boolean transfere( Conta c, double qtd ) {
+		if( this.saca(qtd) ) {
+			c.deposita(qtd);
 			return true;
 		} else {
 			return false;
