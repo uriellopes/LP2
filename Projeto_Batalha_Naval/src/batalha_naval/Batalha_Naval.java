@@ -6,9 +6,7 @@ public class Batalha_Naval {
 		// TODO Auto-generated method stub
 		Jogo jogo = new Jogo("Uriel", "PC");
 		
-		jogo.printJogadores();
-		
-		//Tabuleiro t = new Tabuleiro();
+		jogo.iniciarJogo();
 	}
 
 }

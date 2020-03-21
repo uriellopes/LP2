@@ -3,6 +3,7 @@ package batalha_naval;
 public class Posicao {
 	private Navio navio;
 	private boolean tem_navio = false;
+	private boolean status = false;
 	
 	public Posicao() {
 		this.navio = null;
@@ -17,15 +18,11 @@ public class Posicao {
 		return this.tem_navio;
 	}
 	
-	public void hit() {
-		this.navio.hit();
-	}
-	
 	public int getTamanho() {
 		return this.navio.getTamanho();
 	}
 	
-	public String n() {
-		return this.navio.n;
+	public boolean getStatus() {
+		return this.status;
 	}
 }

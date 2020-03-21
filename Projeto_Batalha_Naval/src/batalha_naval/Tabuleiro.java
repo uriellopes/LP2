@@ -12,11 +12,11 @@ public class Tabuleiro {
 	
 	public Tabuleiro() {		
 		
-		this.navios[0] = new Navio("Porta-aviões", 5, this.rand.nextBoolean(), "a");
-		this.navios[1] = new Navio("Navio de guerra",4, this.rand.nextBoolean(), "b");
-		this.navios[2] = new Navio("Cruzador",3, this.rand.nextBoolean(), "c");
-		this.navios[3] = new Navio("Submarino",3, this.rand.nextBoolean(), "d");
-		this.navios[4] = new Navio("Destruidor",2, this.rand.nextBoolean(), "e");		
+		this.navios[0] = new Navio("Porta-aviões", 5, this.rand.nextBoolean());
+		this.navios[1] = new Navio("Navio de guerra",4, this.rand.nextBoolean());
+		this.navios[2] = new Navio("Cruzador",3, this.rand.nextBoolean());
+		this.navios[3] = new Navio("Submarino",3, this.rand.nextBoolean());
+		this.navios[4] = new Navio("Destruidor",2, this.rand.nextBoolean());		
 		this.qtd_navios = 5;
 		
 		for(int i = 0; i < linhas; i++) {
@@ -82,12 +82,21 @@ public class Tabuleiro {
 			System.out.print(i + " ");
 			for(int j = 0; j < colunas; j++) {
 				if( this.grid[i][j].temNavio() ) {
-					System.out.print(this.grid[i][j].n() + " ");
+					if( this.grid[i][j].getStatus()) {
+						System.out.print("X ");
+					} else {
+						System.out.print("? ");
+					}
 				} else {
-					System.out.print("  ");
+					if( this.grid[i][j].getStatus()) {
+						System.out.print("A ");
+					} else {
+						System.out.print("? ");
+					}
 				}
 			}
 			System.out.println(" ");
 		}
+		System.out.println(" ");
 	}
 }

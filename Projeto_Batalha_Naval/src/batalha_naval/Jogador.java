@@ -13,7 +13,7 @@ public class Jogador {
 		return this.nome;
 	}
 	
-	public void printTabuleiro() {
-		this.tabuleiro.printarTabuleiro();
+	public void imprimeOponenteTabuleiro(Jogador p) {
+		p.tabuleiro.printarTabuleiro();
 	}
 }
