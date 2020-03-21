@@ -37,9 +37,9 @@ public class Jogador {
 	}
 	
 	public void acertou(int x, int y) {
-		System.out.println("Jogador "+this.getNome()+": Fogo! " + this.tabuleiro.getNome(x, y));
+		System.out.println("Jogador "+this.getNome()+": Fogo! " + this.tabuleiro.getNome(x, y) + " foi atingido.");
 		this.tabuleiro.acertou(x, y);
-		if( this.tabuleiro.destruido(x,y) ) {
+		if( this.tabuleiro.destruido(x, y) ) {
 			System.out.println("Jogador "+this.getNome()+": O navio "+ this.tabuleiro.getNome(x,y) + " foi afundado!");
 			this.qtd_navios--;
 		}
@@ -51,6 +51,9 @@ public class Jogador {
 	
 	public void agua() {
 		System.out.println("Jogador "+this.getNome()+": Água!");
-		System.out.println("");
+	}
+	
+	public boolean visivel(int x, int y) {
+		return this.tabuleiro.visivel(x, y);
 	}
 }

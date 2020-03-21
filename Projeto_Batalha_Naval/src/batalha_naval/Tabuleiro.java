@@ -77,15 +77,15 @@ public class Tabuleiro {
 			for(int j = 0; j < colunas; j++) {
 				if( this.grid[i][j].checar() ) {
 					if( this.grid[i][j].getStatus()) {
-						System.out.print("  ");
-					} else {
 						System.out.print("X ");
+					} else {
+						System.out.print("? ");
 					}
 				} else {
 					if( this.grid[i][j].getStatus()) {
 						System.out.print("  ");
 					} else {
-						System.out.print("  ");
+						System.out.print("? ");
 					}
 				}
 			}
@@ -112,5 +112,9 @@ public class Tabuleiro {
 	
 	public String getNome(int x, int y) {
 		return this.grid[x][y].getNome();
+	}
+	
+	public boolean visivel(int x, int y) {
+		return this.grid[x][y].getStatus();
 	}
 }

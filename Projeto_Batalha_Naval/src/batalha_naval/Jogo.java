@@ -31,31 +31,101 @@ public class Jogo {
 		System.out.println("O primeiro a jogar será " + turno.getNome());
 		
 		int x,y;
+		char input;
+		boolean inputInvalido = false;
 		while(true) {
 			System.out.println("");
 			System.out.println("Vez do jogador " + turno.getNome());
 			System.out.println("");
 			turno.imprimeTabuleiro();
 			
-			System.out.print("Digite o x: ");
-			x = leitor.nextInt();
-			System.out.print("Digite o y: ");
-			y = leitor.nextInt();
-			System.out.println("");
-			
-			if( turno.checar(x, y) ) {
-				turno.acertou(x, y);
-				if( turno.venceu() ) {
-					System.out.println("O jogo acabou!");
-					System.out.println("O vencedor foi "+ turno.getNome());
+			do {
+				if(inputInvalido) {
+					System.out.println("Input inválido, digite outro valor!");
+				}
+				System.out.print("Digite o numero referente a linha: ");
+				x = leitor.nextInt();
+				if( x >= 0 && x <= 9 ) {
 					break;
+				} else {
+					inputInvalido = true;
+				}				
+			} while (true);
+			
+			inputInvalido = false;
+			do {
+				if(inputInvalido) {
+					System.out.println("Input inválido, digite outro valor!");
+				}
+				System.out.print("Digite a letra referente a coluna: ");
+				input = leitor.next().charAt(0);
+				switch(input) {
+				case 'a':
+				case 'A':
+					y = 0;
+					break;
+				case 'b':
+				case 'B':
+					y = 1;
+					break;
+				case 'c':
+				case 'C':
+					y = 2;
+					break;
+				case 'd':
+				case 'D':
+					y = 3;
+					break;
+				case 'e':
+				case 'E':
+					y = 4;
+					break;
+				case 'f':
+				case 'F':
+					y = 5;
+					break;
+				case 'g':
+				case 'G':
+					y = 6;
+					break;
+				case 'h':
+				case 'H':
+					y = 7;
+					break;
+				case 'i':
+				case 'I':
+					y = 8;
+					break;
+				case 'j':
+				case 'J':
+					y = 9;
+					break;
+				default:
+					inputInvalido = true;
+					continue;
+				}
+				inputInvalido = false;
+				System.out.println("");
+				break;
+			} while (true);
+			if( !turno.visivel(x,y) ) {
+				if( turno.checar(x, y) ) {
+					turno.acertou(x, y);
+					if( turno.venceu() ) {
+						System.out.println("");
+						System.out.println("O jogo acabou!");
+						System.out.println("O vencedor foi "+ turno.getNome());
+						break;
+					}
+				} else {
+					espera.agua();
+					
+					aux = turno;
+					turno = espera;
+					espera = aux;
 				}
 			} else {
-				espera.agua();
-				
-				aux = turno;
-				turno = espera;
-				espera = aux;
+				System.out.println("Essa posição já foi atacada, repita a jogada!");
 			}
 		}
 		
