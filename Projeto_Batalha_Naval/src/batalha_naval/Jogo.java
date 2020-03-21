@@ -28,11 +28,14 @@ public class Jogo {
 			break;
 		}
 		
+		System.out.println("O primeiro a jogar será " + turno.getNome());
+		System.out.println("");
+		
 		int x,y;
 		while(true) {
 			System.out.println("Vez do jogador " + turno.getNome());
 			System.out.println("");
-			turno.imprimeOponenteTabuleiro(espera);
+			turno.imprimeTabuleiro();
 			
 			System.out.print("Digite o x: ");
 			x = leitor.nextInt();
@@ -40,7 +43,19 @@ public class Jogo {
 			y = leitor.nextInt();
 			System.out.println("");
 			
-			break;
+			if( turno.checar(x, y) ) {
+				
+				
+				break;
+			} else {
+				turno.errou(x, y);
+				System.out.println("Água!");
+				System.out.println("");
+				
+				aux = turno;
+				turno = espera;
+				espera = aux;				
+			}
 		}
 		
 		leitor.close();

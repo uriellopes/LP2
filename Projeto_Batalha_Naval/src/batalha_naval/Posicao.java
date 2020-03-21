@@ -16,15 +16,19 @@ public class Posicao {
 		this.tem_navio = true;
 	}
 	
-	public boolean temNavio() {
-		return this.tem_navio;
-	}
-	
 	public int getTamanho() {
 		return this.navio.getTamanho();
 	}
 	
 	public boolean getStatus() {
 		return this.status;
+	}
+	
+	public boolean checar() {
+		return this.tem_navio;
+	}
+	
+	public void errou() {
+		this.status = true;
 	}
 }

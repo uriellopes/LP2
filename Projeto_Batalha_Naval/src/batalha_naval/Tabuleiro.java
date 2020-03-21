@@ -5,10 +5,11 @@ import java.util.Random;
 public class Tabuleiro {
 	private static int linhas = 10;
 	private static int colunas = 10;
+	private static Random rand;
 	private Posicao grid[][] = new Posicao[linhas][colunas];
-	private Random rand = new Random();
 	
-	public Tabuleiro() {		
+	public Tabuleiro(Random rand) {
+		this.rand = rand;
 		for(int i = 0; i < linhas; i++) {
 			for(int j = 0; j < colunas; j++) {
 				this.grid[i][j] = new Posicao();
@@ -21,14 +22,14 @@ public class Tabuleiro {
 		
 		for(int i = 0; i < navios.length; i++) {
 			while(true) {
-				x = this.rand.nextInt(10);
-				y = this.rand.nextInt(10);
-				if( !this.grid[x][y].temNavio() ) {
+				x = rand.nextInt(10);
+				y = rand.nextInt(10);
+				if( !this.grid[x][y].checar() ) {
 					if( navios[i].isVertical() ) {
 						if( x + navios[i].getTamanho() <= linhas ) {
 							tamanhoNavio = 0;
 							for(int j = x; j < x + navios[i].getTamanho(); j++) {
-								if( this.grid[j][y].temNavio() ) {
+								if( this.grid[j][y].checar() ) {
 									break;
 								} else {
 									tamanhoNavio++;
@@ -45,7 +46,7 @@ public class Tabuleiro {
 						if( y + navios[i].getTamanho() <= colunas ) {
 							tamanhoNavio = 0;
 							for(int j = y; j < y + navios[i].getTamanho(); j++) {
-								if( this.grid[x][j].temNavio() ) {
+								if( this.grid[x][j].checar() ) {
 									break;
 								} else {
 									tamanhoNavio++;
@@ -73,7 +74,7 @@ public class Tabuleiro {
 		for(int i = 0; i < linhas; i++) {
 			System.out.print(i + " ");
 			for(int j = 0; j < colunas; j++) {
-				if( this.grid[i][j].temNavio() ) {
+				if( this.grid[i][j].checar() ) {
 					if( this.grid[i][j].getStatus()) {
 						System.out.print("X ");
 					} else {
@@ -81,7 +82,7 @@ public class Tabuleiro {
 					}
 				} else {
 					if( this.grid[i][j].getStatus()) {
-						System.out.print("A ");
+						System.out.print("  ");
 					} else {
 						System.out.print("? ");
 					}
@@ -90,5 +91,13 @@ public class Tabuleiro {
 			System.out.println(" ");
 		}
 		System.out.println(" ");
+	}
+	
+	public boolean checar(int x, int y) {
+		return this.grid[x][y].checar();
+	}
+	
+	public void errou(int x, int y) {
+		this.grid[x][y].errou();
 	}
 }

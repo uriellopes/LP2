@@ -11,6 +11,10 @@ public class Navio {
 		this.vertical = v;
 	}
 	
+	public String getNome() {
+		return this.nome;
+	}
+	
 	public int getTamanho() {
 		return this.tamanho;
 	}
