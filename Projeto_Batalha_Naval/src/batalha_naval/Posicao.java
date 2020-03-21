@@ -2,11 +2,13 @@ package batalha_naval;
 
 public class Posicao {
 	private Navio navio;
-	private boolean tem_navio = false;
-	private boolean status = false;
+	private boolean tem_navio;
+	private boolean status;
 	
 	public Posicao() {
 		this.navio = null;
+		this.tem_navio = false;
+		this.status = false;
 	}
 	
 	public void addNavio(Navio n) {
