@@ -28,7 +28,15 @@ public class Posicao {
 		return this.tem_navio;
 	}
 	
-	public void errou() {
+	public void mudarStatus() {
 		this.status = true;
+	}
+	
+	public void acertou() {
+		this.navio.acertou();
+	}
+	
+	public String getNome() {
+		return this.navio.getNome();
 	}
 }

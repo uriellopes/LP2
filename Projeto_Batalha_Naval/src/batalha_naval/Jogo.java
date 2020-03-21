@@ -29,10 +29,10 @@ public class Jogo {
 		}
 		
 		System.out.println("O primeiro a jogar será " + turno.getNome());
-		System.out.println("");
 		
 		int x,y;
 		while(true) {
+			System.out.println("");
 			System.out.println("Vez do jogador " + turno.getNome());
 			System.out.println("");
 			turno.imprimeTabuleiro();
@@ -44,17 +44,18 @@ public class Jogo {
 			System.out.println("");
 			
 			if( turno.checar(x, y) ) {
-				
-				
-				break;
+				turno.acertou(x, y);
+				if( turno.venceu() ) {
+					System.out.println("O jogo acabou!");
+					System.out.println("O vencedor foi "+ turno.getNome());
+					break;
+				}
 			} else {
-				turno.errou(x, y);
-				System.out.println("Água!");
-				System.out.println("");
+				espera.agua();
 				
 				aux = turno;
 				turno = espera;
-				espera = aux;				
+				espera = aux;
 			}
 		}
 		

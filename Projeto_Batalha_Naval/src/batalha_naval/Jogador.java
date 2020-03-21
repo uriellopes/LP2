@@ -32,10 +32,25 @@ public class Jogador {
 	}
 	
 	public boolean checar(int x, int y) {
+		this.tabuleiro.mudarStatus(x, y);
 		return this.tabuleiro.checar(x, y);
 	}
 	
-	public void errou(int x, int y) {
-		this.tabuleiro.errou(x, y);
+	public void acertou(int x, int y) {
+		System.out.println("Jogador "+this.getNome()+": Fogo! " + this.tabuleiro.getNome(x, y));
+		this.tabuleiro.acertou(x, y);
+		if( this.tabuleiro.destruido(x,y) ) {
+			System.out.println("Jogador "+this.getNome()+": O navio "+ this.tabuleiro.getNome(x,y) + " foi afundado!");
+			this.qtd_navios--;
+		}
+	}
+	
+	public boolean venceu() {
+		return this.qtd_navios == 0;
+	}
+	
+	public void agua() {
+		System.out.println("Jogador "+this.getNome()+": Água!");
+		System.out.println("");
 	}
 }

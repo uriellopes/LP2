@@ -22,4 +22,8 @@ public class Navio {
 	public boolean isVertical() {
 		return this.vertical;
 	}
+	
+	public void acertou() {
+		this.tamanho--;
+	}
 }

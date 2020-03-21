@@ -7,9 +7,10 @@ public class Tabuleiro {
 	private static int colunas = 10;
 	private static Random rand;
 	private Posicao grid[][] = new Posicao[linhas][colunas];
+	private char letras[] = new char[] {'A','B','C','D','E','F','G','H','I','J'};
 	
-	public Tabuleiro(Random rand) {
-		this.rand = rand;
+	public Tabuleiro(Random r) {
+		rand = r;
 		for(int i = 0; i < linhas; i++) {
 			for(int j = 0; j < colunas; j++) {
 				this.grid[i][j] = new Posicao();
@@ -67,8 +68,8 @@ public class Tabuleiro {
 	
 	public void printarTabuleiro() {
 		System.out.print("  ");
-		for(int k = 0; k < colunas; k++) {
-			System.out.print(k + " ");
+		for(int k = 0; k < letras.length; k++) {
+			System.out.print(letras[k] + " ");
 		}
 		System.out.println(" ");
 		for(int i = 0; i < linhas; i++) {
@@ -76,15 +77,15 @@ public class Tabuleiro {
 			for(int j = 0; j < colunas; j++) {
 				if( this.grid[i][j].checar() ) {
 					if( this.grid[i][j].getStatus()) {
-						System.out.print("X ");
+						System.out.print("  ");
 					} else {
-						System.out.print("? ");
+						System.out.print("X ");
 					}
 				} else {
 					if( this.grid[i][j].getStatus()) {
 						System.out.print("  ");
 					} else {
-						System.out.print("? ");
+						System.out.print("  ");
 					}
 				}
 			}
@@ -97,7 +98,19 @@ public class Tabuleiro {
 		return this.grid[x][y].checar();
 	}
 	
-	public void errou(int x, int y) {
-		this.grid[x][y].errou();
+	public void mudarStatus(int x, int y) {
+		this.grid[x][y].mudarStatus();
+	}
+	
+	public void acertou(int x, int y) {
+		this.grid[x][y].acertou();
+	}
+	
+	public boolean destruido(int x, int y) {
+		return this.grid[x][y].getTamanho() == 0;
+	}
+	
+	public String getNome(int x, int y) {
+		return this.grid[x][y].getNome();
 	}
 }
