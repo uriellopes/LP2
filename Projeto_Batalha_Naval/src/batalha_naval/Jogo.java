@@ -7,14 +7,15 @@ public class Jogo {
 	private Jogador p1;
 	private Jogador p2;
 	private Random rand = new Random();
+	private Scanner leitor;
 	
-	public Jogo(String n1, String n2 ) {
+	public Jogo(String n1, String n2, Scanner l ) {
 		this.p1 = new Jogador(n1);
 		this.p2 = new Jogador(n2);
+		this.leitor = l;
 	}
 	
 	public void iniciarJogo() {
-		Scanner leitor = new Scanner(System.in);
 		Jogador turno = null, espera = null, aux = null;
 		
 		switch(rand.nextInt(2)) {
@@ -28,6 +29,7 @@ public class Jogo {
 			break;
 		}
 		
+		System.out.println("");
 		System.out.println("O primeiro a jogar será " + turno.getNome());
 		
 		int x,y;
@@ -44,7 +46,7 @@ public class Jogo {
 					System.out.println("Input inválido, digite outro valor!");
 				}
 				System.out.print("Digite o numero referente a linha: ");
-				x = leitor.nextInt();
+				x = this.leitor.nextInt();
 				if( x >= 0 && x <= 9 ) {
 					break;
 				} else {
@@ -58,7 +60,7 @@ public class Jogo {
 					System.out.println("Input inválido, digite outro valor!");
 				}
 				System.out.print("Digite a letra referente a coluna: ");
-				input = leitor.next().charAt(0);
+				input = this.leitor.next().charAt(0);
 				switch(input) {
 				case 'a':
 				case 'A':
@@ -128,7 +130,5 @@ public class Jogo {
 				System.out.println("Essa posição já foi atacada, repita a jogada!");
 			}
 		}
-		
-		leitor.close();
 	}
 }
